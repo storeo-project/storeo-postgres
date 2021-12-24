@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgres:
+    image: 'minhdtb/storeo-postgres:latest'
+    build:
+      context: .
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: db1,db2
+      POSTGRES_USER: storeo
+      POSTGRES_PASSWORD: storeo
+    volumes:
+      - storeo-db:/var/lib/postgresql/data
+
+volumes:
+  storeo-db:
